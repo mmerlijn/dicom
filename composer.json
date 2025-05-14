@@ -1,0 +1,27 @@
+{
+    "name": "mmerlijn/dicom",
+    "description": "PHP DICOM for LARAVEL",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["dicom"],
+    "authors": [
+        {
+            "name": "Merlijn",
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "mmerlijn\\dicom\\": "src/"
+        },
+        "files": [
+            "src/Nanodicom.php",
+            "src/Dicom_Simple.php"
+        ]
+    },
+
+    "prefer-stable": true,
+    "minimum-stability": "stable"
+}
