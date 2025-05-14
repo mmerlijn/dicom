@@ -6,4 +6,5 @@
 /.idea
 /.vscode
 /Test/*.dcm
-
+/Test/*.jpg
+/Test/
