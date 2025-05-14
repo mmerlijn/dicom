@@ -1,12 +1,12 @@
 {
     "name": "mmerlijn/dicom",
-    "description": "PHP DICOM for LARAVEL",
+    "description": "PHP DICOM",
     "type": "library",
     "license": "MIT",
     "keywords": ["dicom"],
     "authors": [
         {
-            "name": "Merlijn",
+            "name": "Merlijn"
         }
     ],
     "require": {
