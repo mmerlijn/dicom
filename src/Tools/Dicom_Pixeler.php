@@ -44,7 +44,7 @@ class Dicom_Pixeler extends Nanodicom {
 	/**
 	 * @var string driver to be used: GD (gd), ImageMagick (imagick), GraphicsMagick (gmagick)
 	 */
-	public static $driver = 'gd';
+	public static string $driver = 'gd';
 	
 	protected $_rows;
 	protected $_cols;
@@ -93,10 +93,10 @@ class Dicom_Pixeler extends Nanodicom {
 	 * Public method to set the driver to be used
 	 *
 	 * @param string  name of the driver
-	 * @return object the instance to allow chaining
+	 * @return  Dicom_Pixeler instance to allow chaining
 	 */
-	public function set_driver($driver)
-	{
+	public function set_driver($driver): static
+    {
 		self::$driver = $driver;
 		return $this;
 	}
@@ -106,8 +106,8 @@ class Dicom_Pixeler extends Nanodicom {
 	 *
 	 * @return string the current driver set
 	 */
-	public function get_driver()
-	{
+	public function get_driver(): string
+    {
 		return self::$driver;
 	}
 
@@ -117,8 +117,8 @@ class Dicom_Pixeler extends Nanodicom {
 	 *
 	 * @return string the name of the jpeg file
 	 */
-	public function add_lossy_jpeg8($filename)
-	{
+	public function add_lossy_jpeg8($filename): string
+    {
 		$dataset = array();
 		
 		// Get the data blob
@@ -212,14 +212,15 @@ class Dicom_Pixeler extends Nanodicom {
     /**
      * Public method to get the images from the dicom object
      *
-     * @param integer  a default window width
-     * @param integer  a default window center
-     * @return mixed false if something is missing or not image data found, otherwise an
+     * @param integer|null $width a default window width
+     * @param integer|null $center a default window center
+     * @return array|false false if something is missing or not image data found, otherwise an
      * array of GD objects
-     * @throws Nanodicom_Exception
+     * @throws Nanodicom_Exception|\ImagickException
      */
-	public function get_images($width = NULL, $center = NULL) 
-	{
+	public function get_images(int $width = NULL, int $center = NULL): false|array
+    {
+
 		// Parse the object if not parsed yet
 		$this->parse();
 
@@ -291,9 +292,9 @@ class Dicom_Pixeler extends Nanodicom {
 		}
 
 		// Setting some values
-		$images  = array();
-		$max     = array();
-		$min     = array();
+		$images  = [];
+		$max     = [];
+		$min     = [];
 		
 		$current_position		= $starting_position = 0;
 		$current_image			= 0;
@@ -303,8 +304,10 @@ class Dicom_Pixeler extends Nanodicom {
 		$this->_vr_mode 		= $vr_mode;
 		$this->_endian  		= $endian;
 
+
 		if ($transfer_syntax_uid == '1.2.840.10008.1.2.4.50')
 		{
+
 			// This is jpeg lossy 8-bits. Just get the data.
 			$counter = 0;
 			
@@ -772,6 +775,7 @@ class Dicom_Pixeler extends Nanodicom {
 	 */
 	protected function _allocate_color_gray($image, $gray)
 	{
+        $gray = (int) $gray;
 		switch (self::$driver)
 		{
 			case 'gd': return imagecolorallocate($image, $gray, $gray, $gray);

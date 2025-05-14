@@ -1,34 +1,13 @@
-# Install
-
-```composer require mmerlijn/dicom```
-
-# Usage
-
-```php
-$filename = '_.dcm';
-$dicom = \mmerlijn\dicom\Nanodicom::factory($filename);
-
-$dicom->parse(array(array(0x0010, 0x0010)));
-// Only a small subset of the dictionary entries were loaded
-echo $dicom->profiler_diff('parse')."<br>";
-
-echo 'Patient name if exists: '.$dicom->value(0x0010, 0x0010)."<br>"; // Patient Name if exists
-
-// This will return nothing because dictionaries were not loaded
-echo 'Patient name should be empty here: '.$dicom->PatientName."<br>";
-
-```
-
-# Store jpg file
-```php
+<?php
 use mmerlijn\dicom\Nanodicom;
+require __DIR__ . '/../vendor/autoload.php';
 
-$filename = '_.dcm';
 
-$dicom  = Nanodicom::factory($filename, 'Pixeler');
-if ( ! file_exists($filename.'.0.jpg'))
+
+$dicom  = Nanodicom::factory("OT000001.dcm", 'Pixeler');
+if ( ! file_exists('dump.0.jpg'))
 {
-try {
+    try {
 
         $images = $dicom->get_images();
     }catch (Exception $e) {
@@ -58,7 +37,6 @@ try {
 }
 else
 {
-echo "Image already exists\n";
+    echo "Image already exists\n";
 }
 unset($dicom);
-```

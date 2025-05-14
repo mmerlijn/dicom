@@ -38,7 +38,7 @@ The rationale for this new toolkit is to provide the following features:
   
 Requirements
 ------------
-- PHP 5.2.6+ (tested, possibly older versions)
+- PHP 8.2+ (tested, possibly older versions)
 
 License
 -------

@@ -16,11 +16,7 @@
     "autoload": {
         "psr-4": {
             "mmerlijn\\dicom\\": "src/"
-        },
-        "files": [
-            "src/Nanodicom.php",
-            "src/Dicom_Simple.php"
-        ]
+        }
     },
 
     "prefer-stable": true,
